@@ -1,0 +1,48 @@
+{
+  "name": "todo_app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.3.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-scripts": "2.0.4",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-css": "^2.4.0",
+    "semantic-ui-react": "^0.82.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.11",
+    "@storybook/addon-links": "^3.4.11",
+    "@storybook/addons": "^3.4.11",
+    "@storybook/react": "^3.4.11",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0"
+  }
+}
