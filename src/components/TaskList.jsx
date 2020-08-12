@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, List, Icon } from "semantic-ui-react";
 import _ from "lodash";
+
 const { Item, Content, Header } = List;
 
 export default class TaskList extends Component {
@@ -31,8 +32,7 @@ export default class TaskList extends Component {
                   size="mini"
                   name={task._id + "_drop"}
                   color="red"
-                  icon
-                >
+                  icon>
                   <Icon name="trash" />
                 </Button>
               </div>
@@ -44,7 +44,9 @@ export default class TaskList extends Component {
   }
 }
 
+//ceci permet au composant de définir les types de données qu'il accepte. Par exemple ici size doit être de type string, list est un tableau
+// et doit être fournit
 TaskList.propTypes = {
-  size: PropTypes.string,
-  list: PropTypes.array.isRequired
+  size: PropTypes.string, // optionel pour le composant
+  list: PropTypes.array.isRequired, // obligatoire
 };

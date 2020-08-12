@@ -34,29 +34,29 @@ export const DELETE_FAILURE = "DELETE_FAILURE";
  */
 
 export function editTodo(idTodo, value) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(isRequesting(true));
     axios
       .put(SERVER_URL + `/+${idTodo}`, value)
-      .then(res => {
+      .then((res) => {
         console.log(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
 }
 
 export function deleteTodo(id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(isRequesting(true));
     axios
       .delete(SERVER_URL + `/${id}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         dispatch(deleteSuccess(id));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(deleteErr(err));
       });
   };
@@ -65,30 +65,32 @@ export function deleteTodo(id) {
 export function deleteSuccess(id) {
   return {
     type: DELETE_SUCCESS,
-    id
+    id,
   };
 }
 
 export function deleteErr(err) {
   return {
     type: DELETE_FAILURE,
-    err
+    err,
   };
 }
 export function editFailure() {
   return {
-    type: EDIT_FAILURE
+    type: EDIT_FAILURE,
   };
 }
 export function editSuccess() {
   return {
-    type: EDIT_SUCCESS
+    type: EDIT_SUCCESS,
   };
 }
 export function addTodo(todo) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(isRequesting(true));
-    axios
+    dispatch(addTodoSuccess(todo));
+    dispatch(getAll());
+    /*  axios
       .post(SERVER_URL + "/addTodo", todo)
       .then(response => {
         dispatch(addTodoSuccess(todo));
@@ -96,19 +98,19 @@ export function addTodo(todo) {
       })
       .catch(err => {
         dispatch(addTodoFailure(err));
-      });
+      }); */
   };
 }
 
 export function getAll() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(isRequesting(true));
     axios
       .get(SERVER_URL + "/getAll")
-      .then(res => {
+      .then((res) => {
         dispatch(getTodoSuccess(res.data));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(getTodoFailure(err));
       });
   };
@@ -116,32 +118,32 @@ export function getAll() {
 export function isRequesting(bool) {
   return {
     type: IS_REQUESTING,
-    bool
+    bool,
   };
 }
 export function addTodoSuccess(todo) {
   return {
     type: ADD_TODO_SUCCESS,
-    todo
+    todo,
   };
 }
 export function addTodoFailure(err) {
   return {
     type: ADD_TODO_FAILURE,
-    err
+    err,
   };
 }
 
 export function getTodoFailure(err) {
   return {
     type: GET_ALL_TODO_FAILURE,
-    err
+    err,
   };
 }
 
 export function getTodoSuccess(todo) {
   return {
     type: GET_ALL_TODO_SUCCESS,
-    todo: todo
+    todo: todo,
   };
 }

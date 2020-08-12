@@ -6,23 +6,28 @@ import {
   Select,
   Icon,
   Grid,
-  Message
+  Message,
 } from "semantic-ui-react";
 import TaskList from "./TaskList";
 import ModalTask from "./ModalTask";
 import { deleteTodo, addTodo, getAll, editTodo } from "../actions/actions";
 
+//used for test purpose only
 let searchOptions = [
   { key: 1, value: "done", text: "Faites" },
-  { key: 2, value: "done", text: "A faire" }
+  { key: 2, value: "done", text: "A faire" },
 ];
 
+//for filtering todo
 function filterTodo(todo, filter) {
-  return todo.filter(todo => todo.completed === filter);
+  return todo.filter((todo) => todo.completed === filter);
 }
+
+//fonction utilisée pour redux etc... don't mind it mdr !
+//Sache juste que c'est pour faire des appels serveurs
 function mapDispatchToProps(dispatch) {
   return {
-    addTodo: todo => {
+    addTodo: (todo) => {
       dispatch(addTodo(todo));
     },
     getAll() {
@@ -33,14 +38,14 @@ function mapDispatchToProps(dispatch) {
     },
     deleteTodo(todo) {
       dispatch(deleteTodo(todo));
-    }
+    },
   };
 }
 
 function mapStateToProps(state) {
   return {
     todos: state.todo.todos,
-    isRequesting: state.todo.todos
+    isRequesting: state.todo.todos,
   };
 }
 
@@ -51,31 +56,34 @@ export class Task extends Component {
       openModal: false,
       loading: false,
       todos: this.props.todos,
-      err: false
+      err: false,
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
 
     this.addTodo = this.addTodo.bind(this);
   }
+
   handleButtonClick(val) {
     let data = val.split("_");
     let [target, action] = data;
-    console.log(this.props);
     if (action === "drop") {
       this.props.deleteTodo(target);
     }
   }
+
   componentDidMount() {
     this.props.getAll();
     this.setState({ todos: this.props.todos });
   }
+
   addTodo(description) {
     let date = new Date();
     let task = {
-      date: date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear(),
+      date:
+        date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear(),
       description: description,
-      completed: false
+      completed: false,
     };
     this.setState({ loading: true });
     this.props.addTodo(task);
@@ -105,8 +113,7 @@ export class Task extends Component {
                   icon
                   color="blue"
                   size="tiny"
-                  onClick={this.handleOpenModal}
-                >
+                  onClick={this.handleOpenModal}>
                   <Icon name="add" />
                 </Button>
               </Segment>
